@@ -1,0 +1,12 @@
+
+{% block content %}
+    <p>You are registered in the <a href="http://127.0.0.1/">Forum</a></p>
+    <p>
+        Остался один шаг. Перейдите по <a href="{{ url }}">ссылке</a>, чтобы подтвердить Ваш e-mail и активировать
+        профайл:
+    </p>
+    <hr>
+    {{ url }}
+    <hr>
+    Спасибо за регистрацию.
+{% endblock %}

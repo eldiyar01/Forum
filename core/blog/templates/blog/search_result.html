@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if r_news %}
+<h3 class="list-group-item list-group-item-action active text-center mb-1 sticky-top">
+    Результаты по запросу '{{ search }}':
+</h3>
+{% else %}
+<h3 class="list-group-item list-group-item-action active text-center mb-1 sticky-top">
+    По запросу '{{ search }}' ничего не найдено :(
+</h3>
+{% endif %}
+{% for news_obj in r_news %}
+    <div class="card mb-5 border-primary">
+        <img src="{{ news_obj.image.url }}" class="card-img" alt="...">
+        <div class="card-body">
+            <span class="card-text"><small class="text-muted small">Добавленно: {{ news_obj.add_time}}</small></span>
+            <h3 class="card-title">{{ news_obj.title }}</h3>
+            <p class="card-text">{{ news_obj.description }}</p>
+            <a class="btn btn-outline-primary" href="{{ news_obj.get_absolute_url }}">Подробнее</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

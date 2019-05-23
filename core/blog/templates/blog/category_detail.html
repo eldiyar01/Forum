@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="list-group-item list-group-item-action active text-center mb-1 sticky-top">
+    Новости из категории '{{ category.title|title }}':
+</h2>
+{% for news_obj in category.news.all %}
+    <div class="card mb-5 border-primary">
+        <img src="{{ news_obj.image.url }}" class="card-img" alt="...">
+        <div class="card-body">
+            <span class="card-text"><small class="text-muted small">Добавленно: {{ news_obj.add_time}}</small></span>
+            <h3 class="card-title">{{ news_obj.title }}</h3>
+            <p class="card-text">{{ news_obj.description }}</p>
+            <a class="btn btn-outline-primary" href="{{ news_obj.get_absolute_url }}">Подробнее</a>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

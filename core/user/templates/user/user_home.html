@@ -1,0 +1,6 @@
+{% extends 'user/_user.html' %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    hello {{ user }}
+{% endif %}
+{% endblock %}

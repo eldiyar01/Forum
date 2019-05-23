@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card border-primary mb-5">
+  <div class="card">
+    <img src="{{ news.image.url }}" class="card-img" alt="No image">
+    <div class="card-img-overlay">
+      <h3 class="card-title text-white">{{ news.title }}</h3>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="text-muted small">
+      Добавленно: {{news.add_time }}
+    </p>
+    <h4 class="card-title">{{ news.description }}</h4>
+    <p class="card-text">{{ news.body }}</p>
+  </div>
+  <div class="card-footer text-dark border-primary">Категории:
+    {% for category in news.categories.all %}
+        <a class="card-link" href="{{ category.get_absolute_url }}"> {{ category.title }} </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% for comment in comments %}
+        Пользователь - {{ comment.user }}<br>
+        {{ comment.content }} <br>
+        Добавлен - {{ comment.add_time }}<br><br>
+{% endfor %}
+
+ <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить</button>
+</form>
+{% endblock %}

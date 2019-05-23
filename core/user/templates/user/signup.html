@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+{% endblock %}
+{% block filter %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6 ml-auto mr-auto mt-5">
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white">Регистрация</div>
+            <div class="card-body">
+                <form action="" method="post" class="form ">
+                    {{ form.errors }}
+                    {% if form.non_field_errors %}
+                        <div class  ="non-field-errors alert alert-danger">
+                            {% for err in form.non_field_errors %}
+                                <p class="form-error">{{ err }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% for field in form %}
+                        <fieldset class="form-group row mb25">
+                            <div class="col-md-12 mt-3">
+                                {{ field }}
+                                {% for err in field.errors %}
+                                    <div class="form-control-feedback invalid-feedback">{{ err }}</div>
+                                {% endfor %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            </div>
+                        </fieldset>
+                    {% endfor %}
+
+                        {% csrf_token %}
+                        <button type="submit" role="button" class="btn btn-primary btn-primary ">Регистрация</button>
+                        <hr>
+                        <p class="text small">Уже есть аккаунт?
+                        <a href="{% url 'user:signin' %}" class="btn btn-link btn-sm">Войти</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

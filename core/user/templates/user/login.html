@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% endblock %}
+{% block filter %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-6 ml-auto mr-auto mt-5">
+        <div class="card border-primary  ">
+            <div class="card-header bg-primary text-white">Вход</div>
+            <div class="card-body">
+                <form action="" method="post" class="form">
+                    {% if form.non_field_errors %}
+                        <div class="non-field-errors alert alert-danger">
+                            {% for err in form.non_field_errors %}
+                                <p class="form-error">{{ err }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% for field in form %}
+                        <fieldset class="form-group row mb25 ">
+                            <div class="col-12 mt-1">
+                                {% if field.errors %}
+                                    {{ err }}
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
+                                {% for err in field.errors %}
+                                    <div class="form-control-feedback invalid-feedback">{{ err }}</div>
+                                {% endfor %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            </div>
+                        </fieldset>
+                    {% endfor %}
+                    {% csrf_token %}
+                    <button type="submit" role="button" class="btn btn-primary">Войти</button>
+                    <a href="{% url 'user:password-reset' %}" class="btn btn-link btn-sm">Забыли пароль?</a>
+                    <hr>
+                    <a href="{% url 'user:signup' %}" class="btn btn-link btn-sm">Создать аккаунт</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
